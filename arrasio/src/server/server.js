@@ -5301,17 +5301,12 @@ var speedcheckloop = (() => {
 /** BUILD THE SERVERS **/  
 // Turn the server on
 var server = http.createServer(app);
-var websockets = (() => {
+let websockets = (() => {
     // Configure the websocketserver
-    let config = { server: server };
-    if (c.servesStatic) {
-        server.listen(c.port, function httpListening() {
-            util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".");
-        });
-    } else {
-        config.port = c.port; 
-        util.log((new Date()) + 'Websocket server turned on, listening on port ' + c.port + '.'); 
-    }
+    let config = { server: server }
+        server.listen(8080, function httpListening() {
+            util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".")
+        })
     // Build it
     return new WebSocket.Server(config);
 })().on('connection', sockets.connect); 
