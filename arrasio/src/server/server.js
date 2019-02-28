@@ -5304,7 +5304,7 @@ var server = http.createServer(app);
 let websockets = (() => {
     // Configure the websocketserver
     let config = { server: server }
-        server.listen(8080, function httpListening() {
+        server.listen('port', process.env.PORT || c.port, function httpListening() {
             util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".")
         })
     // Build it
